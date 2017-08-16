@@ -1,10 +1,6 @@
 package org.launchcode.models;
 
-/**
- * Created by LaunchCode
- */
 public enum CheeseType {
-
     HARD ("Hard"),
     SOFT ("Soft"),
     FAKE ("Fake");
@@ -18,5 +14,4 @@ public enum CheeseType {
     public String getName() {
         return name;
     }
-
 }

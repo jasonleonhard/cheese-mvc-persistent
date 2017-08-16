@@ -1,5 +1,7 @@
 body {
     font-family: sans-serif;
+    background: rgba(55, 55, 55, 1);
+    color: #C0C0C0;
 }
 
 nav {

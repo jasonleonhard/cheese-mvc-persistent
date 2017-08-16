@@ -1,5 +1,4 @@
 package org.launchcode.controllers;
-
 import org.launchcode.models.Cheese;
 import org.launchcode.models.CheeseType;
 import org.launchcode.models.data.CheeseDao;
@@ -11,26 +10,22 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import javax.validation.Valid;
 
-/**
- * Created by LaunchCode
- */
 @Controller
 @RequestMapping("cheese")
 public class CheeseController {
-
+    // annotation that spring uses to create table. part of Spring's dependency injection framework,
+    // works with Spring's CrudRepository interface, along with the @Repository annotations,
+    // and some other implicit Spring Boot settings.
     @Autowired
     private CheeseDao cheeseDao;
 
     // Request path: /cheese
     @RequestMapping(value = "")
     public String index(Model model) {
-
         model.addAttribute("cheeses", cheeseDao.findAll());
         model.addAttribute("title", "My Cheeses");
-
         return "cheese/index";
     }
 
@@ -45,12 +40,10 @@ public class CheeseController {
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String processAddCheeseForm(@ModelAttribute  @Valid Cheese newCheese,
                                        Errors errors, Model model) {
-
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Cheese");
             return "cheese/add";
         }
-
         cheeseDao.save(newCheese);
         return "redirect:";
     }
@@ -64,12 +57,9 @@ public class CheeseController {
 
     @RequestMapping(value = "remove", method = RequestMethod.POST)
     public String processRemoveCheeseForm(@RequestParam int[] cheeseIds) {
-
         for (int cheeseId : cheeseIds) {
             cheeseDao.delete(cheeseId);
         }
-
         return "redirect:";
     }
-
 }

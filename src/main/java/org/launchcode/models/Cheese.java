@@ -1,19 +1,14 @@
 package org.launchcode.models;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-/**
- * Created by LaunchCode
- */
-@Entity
+@Entity                 // store class in database
 public class Cheese {
-
-    @Id
-    @GeneratedValue
+    @Id                 // primary key column
+    @GeneratedValue     // id generated automatically
     private int id;
 
     @NotNull
@@ -31,16 +26,16 @@ public class Cheese {
         this.description = description;
     }
 
-    public Cheese() { }
+    public Cheese() { } // hibernate uses default constructor
 
     public int getId() {
         return id;
     }
+    // no setter bc not allowing change outside class
 
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -48,7 +43,6 @@ public class Cheese {
     public String getDescription() {
         return description;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }
@@ -56,7 +50,6 @@ public class Cheese {
     public CheeseType getType() {
         return type;
     }
-
     public void setType(CheeseType type) {
         this.type = type;
     }
