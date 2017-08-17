@@ -8,10 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import java.util.List;
 
@@ -76,6 +74,7 @@ public class CheeseController {
         return "redirect:";
     }
 
+    // /cheese/category?id=12 works
     @RequestMapping(value = "category", method = RequestMethod.GET)
     public String category(Model model, @RequestParam int id) {
         Category cat = categoryDao.findOne(id);
@@ -85,9 +84,24 @@ public class CheeseController {
         return "cheese/index";
     }
 
-// bonus
-    // category GET requests at URLs like /cheese/category/2
-    // retrieve all cheeses in the given category and pass them into the view.
-    // You should use the cheese/index.html template to display the results, with an appropriate title.
+    // /cheese/category/13
+    @RequestMapping(value = "category/{id}", method = RequestMethod.GET)
+    public String cheeseCategoryById(Model model, @PathVariable int id) {
+        Category cat = categoryDao.findOne(id);
+        List<Cheese> cheeses = cat.getCheeses();
+        model.addAttribute("cheeses", cheeses);
+        model.addAttribute("title", "Cheeses in Category: " + cat.getName());
+        return "cheese/index";
+    }
+
+    // /cheese/13
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
+    public String cheeseShowById(Model model, @PathVariable int id) {
+        Category cat = categoryDao.findOne(id);
+        List<Cheese> cheeses = cat.getCheeses();
+        model.addAttribute("cheeses", cheeses);
+        model.addAttribute("title", "Cheeses in Category: " + cat.getName());
+        return "cheese/index";
+    }
 }
 
