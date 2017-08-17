@@ -1,9 +1,32 @@
 body {
     font-family: sans-serif;
     background: rgba(55, 55, 55, 1);
-    color: #C0C0C0;
+    // color: #C0C0C0;
+    color: white;
 }
 
 nav {
     margin-bottom: 20px;
 }
+
+.btn {
+    font-family: sans-serif;
+    background: rgba(55, 55, 55, 1);
+    // color: #C0C0C0;
+    color: white;
+}
+
+select  {
+   font-family: sans-serif;
+   background: rgba(55, 55, 55, 1);
+   color: white;
+}
+
+.dark  {
+   font-family: sans-serif;
+   // background: rgba(55, 55, 55, 1) !important;
+   //color: white;
+   color: red;
+}
+
+// .form-group
