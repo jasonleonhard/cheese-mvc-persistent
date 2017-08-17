@@ -52,4 +52,18 @@ public class CategoryController {
         return "redirect:";
     }
 
+    @RequestMapping(value = "remove", method = RequestMethod.GET)
+    public String displayRemoveCategoryForm(Model model) {
+        model.addAttribute("category", categoryDao.findAll());
+        model.addAttribute("title", "Remove Category");
+        return "category/remove";
+    }
+
+    @RequestMapping(value = "remove", method = RequestMethod.POST)
+    public String processRemoveCategoryForm(@RequestParam int[] ids) {
+        for (int id : ids) {
+            categoryDao.delete(id);
+        }
+        return "redirect:";
+    }
 }

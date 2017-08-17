@@ -84,5 +84,10 @@ public class CheeseController {
         model.addAttribute("title", "Cheeses in Category: " + cat.getName());
         return "cheese/index";
     }
+
+// bonus
+    // category GET requests at URLs like /cheese/category/2
+    // retrieve all cheeses in the given category and pass them into the view.
+    // You should use the cheese/index.html template to display the results, with an appropriate title.
 }
 

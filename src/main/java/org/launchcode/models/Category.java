@@ -21,25 +21,19 @@ public class Category {
 
     // default constuctor req for Hibernate to create/retrieve objects
     public Category() {}
-
     public Category(String name) {
         this.name = name;
     }
-
     public int getId() {
         return id;
     }
-
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public List<Cheese> getCheeses() {
         return cheeses;
     }
-
 }
