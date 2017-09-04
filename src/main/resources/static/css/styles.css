@@ -30,3 +30,7 @@ select  {
 }
 
 // .form-group
+
+li {
+    list-style-type: upper-roman;
+}
