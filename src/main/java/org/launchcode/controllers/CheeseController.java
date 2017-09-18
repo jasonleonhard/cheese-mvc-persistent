@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -38,15 +40,14 @@ public class CheeseController {
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddCheeseForm(Model model) {
         model.addAttribute("title", "Add Cheese");
+//      model.addAttribute("cheeseTypes", CheeseType.values());  // old way
+        model.addAttribute("categories", categoryDao.findAll()); // new way
         model.addAttribute(new Cheese());
-//        model.addAttribute("cheeseTypes", CheeseType.values()); // old way
-        model.addAttribute("categories", categoryDao.findAll());   // new way
         return "cheese/add";
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String processAddCheeseForm(@ModelAttribute  @Valid Cheese newCheese,
-//                                     Errors errors, Model model) {
                                        Errors errors, @RequestParam int categoryId, Model model) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Cheese");
@@ -58,6 +59,29 @@ public class CheeseController {
         cheeseDao.save(newCheese);
         return "redirect:";
     }
+
+    @ResponseBody
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    public HashMap missingParamterHandler(Exception exception) {
+        /**inspect and exception and obtain meaningful message*/
+        // return "default-error-view"; /*view name of your error jsp*/
+        return new HashMap() {
+            {
+                put("result", "failed");
+                put("type", "required_parameter_missing");
+            }
+        };
+    }
+
+//    alternative implementation
+//    @ExceptionHandler(MissingServletRequestParameterException.class)
+//    public void handleMissingParams(MissingServletRequestParameterException ex) {
+////    public String handleMissingParams(MissingServletRequestParameterException ex) {
+//        String name = ex.getParameterName();
+//        System.out.println(name + " parameter is missing");
+//        // Actual exception handling
+////        return "category/add";
+//    }
 
     @RequestMapping(value = "remove", method = RequestMethod.GET)
     public String displayRemoveCheeseForm(Model model) {
