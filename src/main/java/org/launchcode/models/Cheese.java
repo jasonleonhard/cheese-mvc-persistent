@@ -21,7 +21,7 @@ public class Cheese {
 
     @NotBlank(message="Cannot be Blank.")
     @NotNull(message="Cannot be Null.")
-    @Size(min=3, max=20, message = "Description must be between 3-20 letters.")
+    @Size(min=3, max=40, message = "Description must be between 3-40 letters.")
     private String description;
 
     @ManyToOne
