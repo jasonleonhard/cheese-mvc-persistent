@@ -24,12 +24,10 @@ select  {
 
 .dark  {
    font-family: sans-serif;
-   // background: rgba(55, 55, 55, 1) !important;
-   //color: white;
-   color: red;
+   background: rgba(55, 55, 55, 1) !important;
+   color: white;
 }
 
-// .form-group
 
 li {
     list-style-type: upper-roman;
