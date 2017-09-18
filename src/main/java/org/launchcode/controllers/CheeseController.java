@@ -23,7 +23,6 @@ public class CheeseController {
     // and some other implicit Spring Boot settings.
     // automtically populates cheeseDao field
     @Autowired
-//    private CheeseDao cheeseDao;
     CheeseDao cheeseDao;
 
     @Autowired
