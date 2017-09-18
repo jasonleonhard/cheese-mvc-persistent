@@ -54,11 +54,13 @@ public class CategoryController {
 
     @RequestMapping(value = "remove", method = RequestMethod.GET)
     public String displayRemoveCategoryForm(Model model) {
-        model.addAttribute("category", categoryDao.findAll());
+        model.addAttribute("categories", categoryDao.findAll());
         model.addAttribute("title", "Remove Category");
         return "category/remove";
     }
 
+//  TODO: consider warning users that remove a categoy that already has cheeses or
+//  TODO: remove all cheeses that are tied to a category
     @RequestMapping(value = "remove", method = RequestMethod.POST)
     public String processRemoveCategoryForm(@RequestParam int[] ids) {
         for (int id : ids) {
@@ -66,5 +68,4 @@ public class CategoryController {
         }
         return "redirect:";
     }
-
 }
