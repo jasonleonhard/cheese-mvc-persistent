@@ -9,7 +9,9 @@
     <div th:each="category : ${categories}" class="checkbox">
         <input type="checkbox" name="ids" th:value="${category.id}" th:id="${category.id}"/>
         <label th:for="${category.id}" th:text="${category.name}"></label>
-        <a th:href="'/cheese/category?id=' + ${category.id}" th:text="${category.name}"></a>
+        <!--<a th:href="'/cheese/category?id=' + ${category.id}" th:text="${category.name}"></a>-->
+        <!--TODO: consider warning users that remove a categoy that already has cheeses
+         or TODO: remove all cheeses that are tied to a category-->
         <br />
     </div>
     <input class="btn btn-default" type="submit" value="Remove Category" />
