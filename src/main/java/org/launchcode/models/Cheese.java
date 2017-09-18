@@ -1,4 +1,6 @@
 package org.launchcode.models;
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,12 +14,14 @@ public class Cheese {
     @GeneratedValue
     private int id;
 
-    @NotNull
-    @Size(min=3, max=15)
+    @NotBlank(message="Cannot be Blank.")
+    @NotNull(message="Cannot be Null.")
+    @Size(min=3, max=20, message = "Name must be between 3-20 letters.")
     private String name;
 
-    @NotNull
-    @Size(min=1, message = "Description must not be empty")
+    @NotBlank(message="Cannot be Blank.")
+    @NotNull(message="Cannot be Null.")
+    @Size(min=3, max=20, message = "Description must be between 3-20 letters.")
     private String description;
 
     @ManyToOne
