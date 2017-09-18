@@ -25,6 +25,8 @@
         </select>
     </div>
     <input class="btn btn-default" type="submit" value="Add Cheese" />
+    <p th:unless="${categories} and ${categories.size()}">no categories
+                                                          :( First add a category before adding a cheese </p>
 </form>
 
 </body>
