@@ -6,7 +6,8 @@
 <h1 th:text="${title}">Default Title</h1>
 <nav th:replace="fragments :: navigation"></nav>
 <p th:unless="${cheeses} and ${cheeses.size()}">no cheese :(</p>
-
+<!--TODO: consider adding warning when no categories exist yet-->
+<!--<p th:unless="${categories} and ${categories.size()}">no categories :( First add a category </p>-->
 <table class="table">
     <tr>
         <th>Name</th>
