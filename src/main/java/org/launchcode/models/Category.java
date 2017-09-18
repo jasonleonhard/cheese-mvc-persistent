@@ -1,4 +1,6 @@
 package org.launchcode.models;
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -11,8 +13,9 @@ public class Category {
     @GeneratedValue
     private int id;
 
-    @NotNull
-    @Size(min=3, max=15)
+    @NotBlank(message="Cannot be Blank.")
+    @NotNull(message="Cannot be Null.")
+    @Size(min=3, max=20, message = "Name must be between 3-20 letters.")
     private String name;
 
     @OneToMany
