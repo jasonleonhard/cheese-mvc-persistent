@@ -26,7 +26,6 @@ public class CategoryController {
     // This code would need to be added to each controller class that you want to have access to the persistent collections defined within categoryDao.
     @Autowired
     CategoryDao categoryDao; // object
-//    private CategoryDao categoryDao;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String index(Model model, @RequestParam(defaultValue = "0") int id) {
@@ -63,6 +62,9 @@ public class CategoryController {
 //  TODO: remove all cheeses that are tied to a category
     @RequestMapping(value = "remove", method = RequestMethod.POST)
     public String processRemoveCategoryForm(@RequestParam int[] ids) {
+//        for (int id : ids) {
+//            cheeseDao.delete(id);
+//        }
         for (int id : ids) {
             categoryDao.delete(id);
         }
