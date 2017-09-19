@@ -67,7 +67,7 @@ public class CheeseController {
         return new HashMap() {
             {
                 put("result", "failed");
-                put("type", "required_parameter_missing");
+                put("type", "category_must_exist");
             }
         };
     }
@@ -126,5 +126,8 @@ public class CheeseController {
         model.addAttribute("title", "Cheeses in Category: " + cat.getName());
         return "cheese/index";
     }
+
+
+
 }
 
